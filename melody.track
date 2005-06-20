@@ -1,0 +1,103 @@
+# MIDI SCRIPTER
+# Copyright (c) 2005 Emanuel Borsboom
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the 
+# "Software"), to deal in the Software without restriction, including 
+# without limitation the rights to use, copy, modify, merge, publish, 
+# distribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the 
+# following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+# NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+# USE OR OTHER DEALINGS IN THE SOFTWARE.
+# ------------------------------------------------------------------------------------
+#
+# Melody track for example song
+#
+
+velocity 127
+
+program Acoustic_Grand
+note C2, Quarter
+note D2, Quarter
+note E2, Quarter
+note F2, Quarter
+note G2, Quarter
+note A3, Quarter
+note B3, Quarter
+pan 0
+note C3, Quarter
+pan 16
+note D3, Quarter
+pan 32
+note E3, Quarter
+pan 48
+note F3, Quarter
+pan 64
+note G3, Quarter
+pan 72
+note A4, Quarter
+pan 96
+note B4, Quarter
+pan 112
+note C4, Quarter
+pan 127
+note D4, Quarter, Velocity => 112
+pan 64
+note E4, Quarter, Velocity => 96
+note F4, Quarter, Velocity => 72
+note G4, Quarter, Velocity => 64
+note A5, Quarter, Velocity => 48
+note B5, Quarter, Velocity => 32
+note C5, Quarter, Velocity => 16
+rest Half
+
+program Acoustic_Grand
+note C4, Whole
+2.times { note D4, Half }
+4.times { note E4, Quarter }
+8.times { note F4, Eighth }
+16.times { note G4, Sixteenth }
+32.times { note A4, Thirtysecond }
+64.times { note B4, Sixtyfourth }
+rest Whole
+
+note C4, Whole
+note C4, Dotted_Whole
+3.times { note C4, Whole_Triplet }
+3.times { note C4, Dotted_Whole_Triplet }
+
+program Drawbar_Organ
+start_porta 24 do
+	note [C3,E3,G3], Quarter
+	note D3, Quarter
+	note A3, Quarter
+	note E3, Quarter
+	note G2, Quarter
+	note F3, Quarter
+	note F2, Quarter
+	note G3, Dotted_Half
+	note C3, Quarter
+	speed 4
+	note C4, Dotted_Whole
+end
+rest Half
+
+program Acoustic_Grand
+pitch_range 12
+note_on C3
+pitch_bend -1.0, 1.0, Whole
+pitch_bend 1.0, -1.0, Whole
+note_off C3
+pitch 0
+rest Half
+

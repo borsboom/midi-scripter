@@ -1,0 +1,615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>MIDI Scripter (v0.5.0) Readme</title>
+<style>
+html {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+body {
+  color: black;
+  margin: 10px 0px 10px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: white;
+  text-align: center;
+}
+body, td {
+  font: 15px "Georgia", "Times New Roman", Times, serif;
+}
+#content {
+  width: 760px;
+  text-align: left;
+  margin: 0 auto;
+  padding-left: 5px;
+}
+a {
+  color: #40c;
+  text-decoration: none;
+}
+a:link {
+  font-weight: bold;
+  text-decoration: none;
+}
+a:visited {
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:active {
+  position: relative;
+  left: 1px;
+  top: 1px;
+}
+h1, h2, h3 {
+  font: 19px "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
+  color: #f80;
+  width: 770px;
+  margin-left: -5px;
+}
+h1 {
+  text-align: center;
+}
+h2 {
+  border-bottom: 1px solid #840;
+}
+h3 {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: bold;
+  color: #c60;
+  border-bottom: 1px dashed #840;
+}
+.shadow_heading_outer {
+  position: relative;
+  color: #666;
+}
+.shadow_heading_inner {
+  position: absolute;
+  left:-1px;
+  top:-1px;
+  color: #f80;
+}
+a img {
+  border-width: 1px;
+}
+ul, blockquote {
+  margin-left: 1.3em;
+  padding-left: 0px;
+}
+li {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+p {
+  text-align: justify;
+}
+code, pre {
+  font: 15px "Courier New", Courier, monospace;
+}
+code {
+  font-weight: bold;
+}
+code em {
+  font-weight: normal;
+}
+pre {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+.small {
+  font-size: 11px;
+}
+.centered {
+  text-align: center;
+}
+</style>
+</head>
+<body><div id="content">
+
+<h1><span class="shadow_heading_outer">MIDI Scripter (v0.5.0) Readme<span class="shadow_heading_inner">MIDI Scripter (v0.5.0) Readme</span></span></h1>
+
+<p class="centered">
+Copyright &copy; 2005 Emanuel Borsboom
+<br>
+Thanks to Philip Bennefall for the idea.
+</p>
+
+<p class="centered">
+Home Page: <a href="http://www.epiphyte.ca/code/midi_scripter.html">http://www.epiphyte.ca/code/midi_scripter.html</a>
+</p>
+
+<h2><a name="toc"></a><span class="shadow_heading_outer">Table of Contents<span class="shadow_heading_inner">Table of Contents</span></span></h2>
+
+<ol>
+	<li><a href="#overview">Overview</a></li>
+	<li><a href="#setup">Requirements and Setup</a>
+		<ol>
+			<li><a href="#setup_windows">Windows</a></li>
+			<li><a href="#setup_other">Other</a></li>
+		</ol>
+	</li>
+	<li><a href="#usage">Usage</a></li>
+	<li><a href="#file_format">Input Song File Format</a>
+		<ol>
+			<li><a href="#basic_commands">Basic Commands</a></li>
+			<li><a href="#advanced_commands">Advanced Commands</a></li>
+		</ol>
+	</li>
+	<li><a href="#constants">Constants</a>
+		<ol>
+			<li><a href="#program_number_constants">General MIDI Program Numbers</a></li>
+			<li><a href="#drum_note_constants">General MIDI Drum Notes</a></li>
+			<li><a href="#length_constants">Lengths</a></li>
+		</ol>
+	</li>
+	<li><a href="#examples">Examples</a></li>
+	<li><a href="#license">License</a></li>
+</ol>
+
+
+<h2><a name="overview"></a><span class="shadow_heading_outer">Overview<span class="shadow_heading_inner">Overview</span></span></h2>
+
+<p>This program generates a MIDI file from simple commands in text files.  
+It was specifically created for someone who is visually impaired, so it is intended to be accessible to anyone.</p>
+
+<h2><a name="setup"></a><span class="shadow_heading_outer">Requirements and Setup<span class="shadow_heading_inner">Requirements and Setup</span></span></h2>
+
+<p>The first thing to do is unzip the distribution you downloaded (whether binary or source).  Then, follow the platform-specific instructions below.</p>
+
+<h3><a name="setup_windows"></a>Windows</h3>
+
+<p>The easiest way to setup the program on Windows requires no installation at all.  If you downloaded the win32 binary zip file, just unzip it and you're done.</p>
+
+<p>If for some reason you don't want to use the binary, you must install the Ruby interpreter and the wxRuby library.  The easiest way to do that is to use the "One-Click Ruby Installer" at <a href="http://rubyforge.org/frs/download.php/2407/ruby182-14.exe">http://rubyforge.org/frs/download.php/2407/ruby182-14.exe</a>, and then the "wxRuby One Click Installer" at <a href="http://rubyforge.org/frs/download.php/1984/wxruby-0.6.0-mswin.exe">http://rubyforge.org/frs/download.php/1984/wxruby-0.6.0-mswin.exe</a>. </p>
+
+<h3><a name="setup_other"></a>Other</h3>
+
+<p>This program should run on any platform that supports Ruby and wxWidgets (and will run in command-line mode without wxWidgets).  It has been tested with Ruby 1.8.2, wxWidgets 2.4.2, and wxRuby 0.6.0.  First, you must install Ruby, which you can download from <a href="http://ruby-lang.org/">http://ruby-lang.org/</a>.  Then, install wxRuby, which you can download from <a href="http://wxruby.rubyforge.org/">http://wxruby.rubyforge.org/</a>.  wxRuby requires wxWidgets, which is available at <a href="http://wxwidgets.org/">http://wxwidgets.org/</a>.</p>
+
+
+<h2><a name="usage"></a><span class="shadow_heading_outer">Usage<span class="shadow_heading_inner">Usage</span></span></h2>
+
+<p>To start the program on Windows (if you are using the win32 binary package), simply run <code>MidiScripter.exe</code> (for example, by double clicking on it in Windows Explorer).</p>
+
+<p>Otherwise, run <code>MidiScripter.rb</code>.  For example, type "<code>ruby MidiScipter.rb</code>" on the command-line.</p>
+
+<p>Once it's running, it's a snap to use - just select your input file, then your output file, and then click "Generate MIDI File".  If you want to listen to the MIDI file immediately after generating it, click "Generate and Play" instead.  Note that while the MIDI player is running, MIDI Scripter will be unresponsive until you exit it.</p>
+
+<p>For playing the MIDI file to work, you must have your MIDI player configured correctly.  The default should work if you are running Windows and have Windows Media Player installed.</p>
+
+<p>You can also specify the input and output files on the command-line, in which case the GUI is skipped (and wxRuby is not required).  For example:</p>
+<blockquote><code>ruby MidiScripter.rb example.song example.mid</code></blockquote>
+
+<p>By default, the input files are run in <em>safe mode</em>, which prevents them from accessing your system.  If you want the input file to be able to access your system, you can run the program in <em>unsafe mode</em> by adding the <code>--unsafe</code> command-line argument.  For example:</p>
+<blockquote><code>ruby MidiScripter.rb --unsafe</code></blockquote>
+<p>or</p>
+<blockquote><code>ruby MidiScripter.rb --unsafe example.song example.mid</code></blockquote>
+<p><strong>Warning:</strong> this will allow the input file to do things like erase your hard drive or send e-mails, so only use it for songs from people you trust!</p>
+
+<h2><a name="file_format"></a><span class="shadow_heading_outer">Input Song File Format<span class="shadow_heading_inner">Input Song File Format</span></span></h2>
+
+<p>Each input song file is, in fact, a Ruby (<a href="http://www.ruby-lang.org/">www.ruby-lang.org</a>) program.  It is interpreted in an environment that has a bunch of simple commands defined for generating a MIDI sequence.  The input is divided into tracks.  Each track has an independent timeline.  Most commands affect only the current track, but there are some commands that affect all tracks.  Each track is normally stored in a separate file, and the main input file specifies where to load them.  Comments are started with <code>#</code> and continue until the end of the line.  You may use any valid Ruby expression in the file.  Commands are <strong>case sensitive</strong>!</p>
+
+
+
+<h3><a name="basic_commands"></a>Basic Commands</h3>
+
+	<ul>
+		<li><code>tempo <em>bpm</em></code>
+			<p>Specifies the tempo in beats per minute (BPM).  The default is 120.  This is a global value (it affects all tracks).</p>
+		</li>
+	
+		<li><code>load_track "<em>filename</em>"</code>
+			<p>Load a track from the given filename.  The track's timeline begins at the time that load_track occurrs.  May be nested.  The filename can be absolute, or relative to the current file.</p>
+		</li>
+		
+		<li><code>load_track "<em>filename</em>", Channel =&gt; <em>channel</em></code>
+			<p>Load a track from the given filename and sets the default channel.</p>
+		</li>
+	
+		<li><code>channel <em>channel-number</em></code>
+			<p>The MIDI channel to use for MIDI events.  Each instrument should be on its own channel, but multiple tracks may use the same channel  Channel 1 is the first channel.  Note: Channel 10 is reserved for the drum track.  You should use the constant <code>Drum_Channel</code> in place of the number 10.</p>
+		</li>
+	
+		<li><code>program <em>program-number</em></code>
+			<p>Set the MIDI program (patch) number controller.  Use this to set the instrument on the channel.  Value between 0 and 127.  See the <a href="#program_number_constants">General MIDI program numbers table</a> below for a list of pre-defined constants that you can use.</p>
+		</li>
+	
+		<li><code>volume <em>volume</em></code>
+			<p>Specifies the channel's volume.  Value may be between 0 and 127.</p>
+		</li>
+	
+		<li><code>velocity <em>velocity</em></code>
+			<p>Specifies the default note velocity (how hard the note is hit, so how loud it is).  Value may be between 1 and 127.</p>
+		</li>
+		
+		<li><code>transpose <em>semitones</em></code>
+			<p>Transposes subsequent notes by the specified number of semitones.  You can use, for example, <code>transpose F3-C3</code>, to transpose everything up 5 semitones (the difference between F3 and C3).  A value of 0 means no transpose.</p>
+		</li>
+		
+		<li><code>pan <em>pan</em></code>
+			<p>Sets the pan position of the channel.  Number between 0 and 127.  0=left, 127=right, 64=center</p>
+		</li>
+		
+		<li><code>reverb <em>reverb</em></code>
+			<p>Sets the reverb of the channel.  Number between 0 and 127.  0=no reverb, 127=maximum reverb</p>
+		</li>
+		
+		<li><code>chorus <em>chorus</em></code>
+			<p>Sets the chrous of the channel.  Number between 0 and 127.  0=no chorus, 127=maximum chorus</p>
+		</li>
+	
+		<li><code>note <em>note</em>, <em>length</em></code>
+			<p>Plays a note.  <code><em>note</em></code> is a MIDI note number.  You should use constants like <code>C4</code> (middle-C), <code>Bf3</code> (B-flat an octave below middle-C), or <code>Cs5</code> (C-sharp an octave above middle-C) for this.  These constants range from <code>Af0</code> to <code>Gs7</code>.  <code><em>length</em></code> is the duration in number of beats.  This can be specified as a number (where 1.0 is one beat), or using one of the constants in the <a href="#length_constants">lengths table</a> below.  The next command will take affect after the note has completed.</p>
+	
+		<li><code>note [<em>note</em>, <em>note</em>, ..., <em>note</em>], <em>length</em></code>
+			<p>Plays multiple notes at the same time.</p>
+	
+		<li><code>note <em>note</em>, <em>length</em>, Velocity =&gt; <em>velocity</em></code></li>
+		<li><code>note [<em>note</em>, <em>note</em>, ..., <em>note</em>], <em>length</em>, Velocity =&gt; <em>velocity</em></code>
+			<p>Plays note(s) and over-rides the default velocity.</p>
+		</li>
+	
+		<li><code>drum <em>note</em></code>
+			<p>Plays a drum note.  This should only be used on channel 10.  See the <a href="#drum_note_constants">General MIDI drum notes table</a> below for a list of pre-defined constants that you can use.  The next command takes affect at the same time as the drum.</p>
+		</li>
+	
+		<li><code>drum <em>note</em>, Length =&gt; <em>length</em></code>
+			<p>Some drum instruments work like other instruments and can have a duration, and this version of the command allows you to specify it.  The next command takes affect after the drum note has completed.</p>
+		</li>
+		
+		<li><code>drum <em>note</em>, Velocity =&gt; <em>velocity</em></code></li>
+		<li><code>drum <em>note</em>, Length =&gt; <em>length</em>, Velocity =&gt; <em>velocity</em></code>
+			<p>Plays a drum note and over-rides the default velocity.</p>
+		</li>
+	
+		<li><code>rest <em>length</em></code>
+			<p>Rest for the specified duration.  This does nothing, but the next command will take affect after the duration.</p>
+		</li>
+	</ul>
+	
+<h3><a name="advanced_commands"></a>Advanced Commands</h3>
+
+	<ul>
+
+	<li><code>note_on <em>note</em></code></li>
+	<li><code>note_on [<em>note</em>, <em>note</em>, ..., <em>note</em>]</code></li>
+	<li><code>note_on <em>note</em>, Velocity =&gt; <em>velocity</em></code></li>
+	<li><code>note_on [<em>note</em>, <em>note</em>, ..., <em>note</em>], Velocity =&gt; <em>velocity</em></code>
+		<p>Start note(s).  The note(s) will play until the a note_off command with the same note number is encountered.  This has no duration, so the next command take affect immediately.</p>
+	</li>
+		
+	<li><code>note_off <em>note</em></code></li>
+	<li><code>note_off [<em>note</em>, <em>note</em>, ..., <em>note</em>]</code></li>
+	<li><code>note_off <em>note</em>, Velocity =&gt; <em>velocity</em></code></li>
+	<li><code>note_off [<em>note</em>, <em>note</em>, ..., <em>note</em>], Velocity =&gt; <em>velocity</em></code>
+		<p>End note(s).</p>
+	</li>
+	
+	<li><code>bank <em>bank-number</em></code></li>
+	<li><code>bank <em>bank-number</em>, <em>fine-bank-number</em></code>
+		<p>Set the bank number, to access more programs/drums.</p>
+	</li>
+
+	<li><code>start_porta <em>speed</em> do ... end</code>
+		<p>Portamento effect.  The commands between <code>do</code> and <code>end</code> are played with portamento.  The only commands that may appear within are <code>note</code> and <code>speed</code>.  <code>speed</code> changes the speed of the portamento affect.  The speed is specified in number of semitones per beat.</p>
+		<p>Note: This portamento is implemented using the pitch wheel control.  In order for it to sound correct, your MIDI device must support the pitch wheel bend range registered parameter (most do, but if it doesn't, it won't sound right).  This does <em>not</em> use the MIDI portamento effect, because it works on so few devices.</p>
+	</li>
+	
+	<li><code>pitch <em>amount</em></code>
+		<p>Sets the pitch wheel control.  The amount is a floating point value between -1.0 and +1.0.  By default, -1.0 means pitch is adjusted down two semitones, +1.0 means the pitch is adjusted up two semitones, and 0 means there is no adjustment.  The range can be changed using the <code>pitch_range</code> command.</p>
+	</li>
+	
+	<li><code>pitch_range <em>range</em></code>
+		<p>Sets the range of the pitch wheel in semitones.</p>
+	</li>
+	
+	<li><code>pitch_bend <em>start-amount</em> <em>end-amount</em> <em>length</em></code>
+		<p>Sweeps the pitch wheel from <em>start-amount</em> to <em>end-amount</em>, taking <em>length</em> beats to do so.</p>
+	</li>
+	
+	<li><code>rewind <em>length</em></code>
+		<p>Rewinds the time line.  The opposite of rest.  Specified in beats.</p>
+	</li>
+	
+	<li><code>time <em>time</em></code>
+		<p>Sets the track's timeline to an absolute time value from the beginning of the song.  Specified in beats.  0.0 is the beginning of the song.</p>
+	</li>
+	
+	<li><code>start_track do ... end</code>
+		<p>Start a track without loading a file.  The track is everything between the <code>do</code> and the following <code>end</code>.  May be nested.  The track's timeline begins where the <code>start_track</code> occurrs.</p>
+	</li>
+		
+	<li><code>start_track Channel =&gt; <em>channel</em> do ... end</code>
+		<p>Start a track, specifying the default channel it will use.</p>
+	</li>
+		
+	<li><code>disable_midi_tracks</code></li>
+	<li><code>enable_midi_tracks</code>
+		<p>Disable or enable whether subsequent tracks will have their own MIDI sequence tracks.</p>
+	</li>
+		
+	<li><code>event <em>event</em></code>
+		<p>Add a Midilib event object to the track.  See <a href="http://midilib.rubyforge.org/">http://midilib.rubyforge.org/</a> for the events, and <a href="http://www.borg.com/~jglatt/tech/midispec.htm">http://www.borg.com/~jglatt/tech/midispec.htm</a> for explanation of their meaning.  The delta_time of the event is ignored, and the timeline of the track is used instead.  Use the event_channel function to get the channel number to use in the event.</p>
+	</li>
+	
+	<li><code>control_event <em>event</em></code>
+		<p>Add a Midilib event object to the control track.</p>
+	</li>
+	
+	</ul>
+
+<h2><a name="constants"></a><span class="shadow_heading_outer">Constants<span class="shadow_heading_inner">Constants</span></span></h2>
+
+<h3><a name="program_number_constants"></a>General MIDI Program Numbers</h3>
+	
+<pre>	#PIANO                           
+Acoustic_Grand = 0
+Bright_Acoustic = 1
+Electric_Grand = 2
+Honky_Tonk = 3
+Electric_Piano_1 = 4
+Electric_Piano_2 = 5
+Harpsichord = 6
+Clavinet = 7
+	#CHROMATIC PERCUSSION
+Celesta = 8
+Glockenspiel = 9
+Music_Box = 10
+Vibraphone = 11
+Marimba = 12
+Xylophone = 13
+Tubular_Bells = 14
+Dulcimer = 15
+	#ORGAN                          
+Drawbar_Organ = 16
+Percussive_Organ = 17
+Rock_Organ = 18
+Church_Organ = 19
+Reed_Organ = 20
+Accoridan = 21
+Harmonica = 22
+Tango_Accordian = 23
+	#GUITAR
+Nylon_String_Guitar = 24
+Steel_String_Guitar = 25
+Electric_Jazz_Guitar = 26
+Electric_Clean_Guitar = 27
+Electric_Muted_Guitar = 28
+Overdriven_Guitar = 29
+Distortion_Guitar = 30
+Guitar_Harmonics = 31
+	#BASS
+Acoustic_Bass = 32
+Electric_Bass_Finger = 33
+Electric_Bass_Pick = 34
+Fretless_Bass = 35
+Slap_Bass_1 = 36
+Slap_Bass_2 = 37
+Synth_Bass_1 = 38
+Synth_Bass_2 = 39
+	#SOLO_STRINGS
+Violin = 40
+Viola = 41
+Cello = 42
+Contrabass = 43
+Tremolo_Strings = 44
+Pizzicato_Strings = 45
+Orchestral_Strings = 46
+Timpani = 47
+	#ENSEMBLE
+String_Ensemble_1 = 48
+String_Ensemble_2 = 49
+SynthStrings_1 = 50
+SynthStrings_2 = 51
+Choir_Aahs = 52
+Voice_Oohs = 53
+Synth_Voice = 54
+Orchestra_Hit = 55
+	#BRASS
+Trumpet = 56
+Trombone = 57
+Tuba = 58
+Muted_Trumpet = 59
+French_Horn = 60
+Brass_Section = 61
+SynthBrass_1 = 62
+SynthBrass_2 = 63
+	#REED
+Soprano_Sax = 64
+Alto_Sax = 65
+Tenor_Sax = 66
+Baritone_Sax = 67
+Oboe = 68
+English_Horn = 69
+Bassoon = 70
+Clarinet = 71
+	#PIPE
+Piccolo = 72
+Flute = 73
+Recorder = 74
+Pan_Flute = 75
+Blown_Bottle = 76
+Skakuhachi = 77
+Whistle = 78
+Ocarina = 79
+	#SYNTH_LEAD
+Lead_1= 80
+Lead_2 = 81
+Lead_3 = 82
+Lead_4 = 83
+Lead_5 = 84
+Lead_6 = 85
+Lead_7 = 86
+Lead_8 = 87
+	#SYNTH_PAD
+Pad_1 = 88
+Pad_2 = 89
+Pad_3 = 90
+Pad_4 = 91
+Pad_5 = 92
+Pad_6 = 93
+Pad_7 = 94
+Pad_8 = 95
+	#SYNTH_EFFECTS
+FX_1 = 96
+FX_2 = 97
+FX_3 = 98
+FX_4 = 99
+FX_5 = 100
+FX_6 = 101
+FX_7 = 102
+FX_8 = 103
+	#ETHNIC
+Sitar = 104
+Banjo = 105
+Shamisen = 106
+Koto = 107
+Kalimba = 108
+Bagpipe = 109
+Fiddle = 110
+Shanai = 111
+	#PERCUSSIVE
+Tinkle_Bell = 112
+Agogo = 113
+Steel_Drums = 114
+Woodblock = 115
+Taiko_Drum = 116
+Melodic_Tom = 117
+Synth_Drum = 118
+Reverse_Cymbal = 119
+	#SOUND_EFFECTS
+Guitar_Fret_Noise = 120
+Breath_Noise = 121
+Seashore = 122
+Bird_Tweet = 123
+Telephone_Ring = 124
+Helicopter = 125
+Applause = 126
+Gunshot = 127</pre>
+
+
+
+<h3><a name="drum_note_constants"></a>General MIDI Drum Notes</h3>
+
+<pre>Acoustic_Bass_Drum = 35
+Bass_Drum_1 = 36
+Side_Stick = 37
+Acoustic_Snare = 38
+Hand_Clap = 39
+Electric_Snare = 40
+Low_Floor_Tom = 41
+Closed_Hi_Hat = 42
+High_Floor_Tom = 43
+Pedal_Hi_Hat = 44
+Low_Tom = 45
+Open_Hi_Hat = 46
+Low_Mid_Tom = 47
+Hi_Mid_Tom = 48
+Crash_Cymbal_1 = 49
+High_Tom = 50
+Ride_Cymbal_1 = 51
+Chinese_Cymbal = 52
+Ride_Bell = 53
+Tambourine = 54
+Splash_Cymbal = 55
+Cowbell = 56
+Crash_Cymbal_2 = 57
+Vibraslap = 58
+Ride_Cymbal_2 = 59
+Hi_Bongo = 60
+Low_Bongo = 61
+Mute_Hi_Conga = 62
+Open_Hi_Conga = 63
+Low_Conga = 64
+High_Timbale = 65
+Low_Timbale = 66
+High_Agogo = 67
+Low_Agogo = 68
+Cabasa = 69
+Maracas = 70
+Short_Whistle = 71
+Long_Whistle = 72
+Short_Guiro = 73
+Long_Guiro = 74
+Claves = 75
+Hi_Wood_Block = 76
+Low_Wood_Block = 77
+Mute_Cuica = 78
+Open_Cuica = 79
+Mute_Triangle = 80
+Open_Triangle = 81</pre>
+
+
+
+<h3><a name="length_constants"></a>Lengths</h3>
+
+<pre>Whole
+Half
+Quarter
+Eighth
+Sixteenth
+Thirtysecond
+Sixtyfourth
+Dotted_Whole
+Dotted_Half
+Dotted_Quarter
+Dotted_Eighth
+Dotted_Sixteenth
+Dotted_Thirtysecond
+Dotted_Sixtyfourth
+Whole_Triplet
+Half_Triplet
+Quarter_Triplet
+Eighth_Triplet
+Sixteenth_Triplet
+Thirtysecond_Triplet
+Sixtyfourth_Triplet
+Dotted_Whole_Triplet
+Dotted_Half_Triplet
+Dotted_Quarter_Triplet
+Dotted_Eighth_Triplet
+Dotted_Sixteenth_Triplet
+Dotted_Thirtysecond_Triplet
+Dotted_Sixtyfourth_Triplet</pre>
+
+<h2><a name="examples"></a><span class="shadow_heading_outer">Examples<span class="shadow_heading_inner">Examples</span></span></h2>
+
+<p>See the file <a href="example.song">example.song</a>, and the files which it loads: <a href="melody.track">melody.track</a>, <a href="chords.track">chords.track</a>, and <a href="drums.track">drums.track</a>.</p>
+
+
+
+<h2><a name="license"></a><span class="shadow_heading_outer">License<span class="shadow_heading_inner">License</span></span></h2>
+
+<p>Copyright &copy; 2005 Emanuel Borsboom<p>
+
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the 
+"Software"), to deal in the Software without restriction, including 
+without limitation the rights to use, copy, modify, merge, publish, 
+distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the 
+following conditions:
+</p>
+
+<p>
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+</p>
+
+<p>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+	
+</div></body></html>
